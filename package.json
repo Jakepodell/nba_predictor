@@ -1,0 +1,30 @@
+{
+  "name": "nba_predictor",
+  "version": "1.0.0",
+  "description": "4701 project",
+  "main": "web_scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jakepodell/nba_predictor.git"
+  },
+  "keywords": [
+    "nba",
+    "stats",
+    "ai",
+    "machine_learning"
+  ],
+  "author": "Jake Podell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jakepodell/nba_predictor/issues"
+  },
+  "homepage": "https://github.com/Jakepodell/nba_predictor#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}
