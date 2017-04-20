@@ -32,12 +32,14 @@ const field_decoder = {
                         "pts": "points"
                     };
 
-request(NBA_API + "NBA_" + year + ".html", {json: true})
+function scrape(){
+    return request(NBA_API + "NBA_" + year + ".html", {json: true})
             .then(function(res) {
                 var top_section = res.split(/team-stats-per_game/)[4].split(/all_opponent-stats-per_game/)[0];
                 var data = top_section.match(/(data-stat="(fg|fga|fg_pct|fg3|fg3a|fg3_pct|fg2|fg2a|fg2_pct|ft|fta|ft_pct|orb|drb|trb|ast|stl|blk|tov|pf|pts)*"\s>[0-9]*.?[0-9]*<\/td>)|data-stat="team_name"\s><a\shref="\/teams\/(\w)*\/[0-9]*.html">(\w|\s)*/g);
                 var i = -1;
                 var json_strings = [];
+                var return_data = [];
                 data.forEach(function(point) {
                     var stat_split = point.split(/data-stat="/);
                     var stat = stat_split[1].split(/"/)[0];
@@ -58,12 +60,30 @@ request(NBA_API + "NBA_" + year + ".html", {json: true})
                 json_data = json_strings.map(function(string) {
                     return JSON.parse(string);
                 })
-                json_data.forEach(function(team) {
-                    console.log("********************* "+team.team_name+" *********************");
-                    console.log(team);
+                return json_data.map(function(team) {
+                    var stat_array = [];
+                    for(stat in team) {
+                        if (stat != "team_name") {
+                            stat_array.push(parseFloat(team[stat]));
+                        }
+                    }
+                    return {team_name: team["team_name"], stats: stat_array};
                 })
+            })
+            
+            .then(function (res) {
+                return res;
             })
             
             .catch(function(err) {
                 console.log(err);
-            })
+            });
+}
+
+scrape().then(function(val){
+    console.log(val);
+})
+.catch(function(err) {
+    console.log("err");
+})
+
