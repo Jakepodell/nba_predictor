@@ -15,17 +15,22 @@ csvConverter.on("end_parsed",function(jsonObj){
 });
 
 
-function convert(callback) {
+exports.convert = function(callback) {
 	var stream = fs.createReadStream(csvFileName).pipe(csvConverter);
 	stream.on('finish', function(){
 		var response = stream.finalResult;
 		var converted = response.map(function(team) {
-			return {team1: team['home'], team2: team['road'], outcome: parseFloat(team['hscore']) - parseFloat(team['rscore']) > 0};
+			team1 = team['home'] > team['road'] ? team['home'] : team['road'];
+			team2 = team['home'] < team['road'] ? team['home'] : team['road'];
+			score1 = team['home'] > team['road'] ? team['hscore'] : team['rscore'];
+			score2 = team['home'] < team['road'] ? team['hscore'] : team['rscore'];
+			return {team1: team1, team2: team2, outcome: (parseFloat(score1) - parseFloat(score2) > 0) ? 1 : -1 };
 		});
 		callback(converted);
 	});
 }
 
-convert(function(response) {
+exports.convert(function(response) {
 	console.log(response);
 });
+
