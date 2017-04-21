@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08482805-1ddb-437a-8fee-d44d76de611a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/nba_predictor/Perceptron.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/nba_predictor/main.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/nba_predictor_node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csv_converter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nba_predictor.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Perceptron.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/csvs/2015.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_scraper.js" afterPath="$PROJECT_DIR$/web_scraper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Standardize.js" afterPath="$PROJECT_DIR$/Standardize.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csv_converter.js" afterPath="$PROJECT_DIR$/csv_converter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matchup_record_converter.js" afterPath="$PROJECT_DIR$/matchup_record_converter.js" />
     </list>
     <ignored path="nba_predictor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -615,12 +601,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1492559427914</updated>
-      <workItem from="1492559430716" duration="1842000" />
+      <workItem from="1492559430716" duration="2155000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1842000" />
+    <option name="totallyTimeSpent" value="2155000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="760" height="777" extended-state="0" />

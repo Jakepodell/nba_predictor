@@ -1,6 +1,6 @@
 // mapping of possible team names to 3 letter team abbreviation
 // assumes all key strings are entirely lowercase
-var standardize = {
+exports.standardize = {
 	"atlanta hawks" : "ATL",
 	"hawks" : "ATL",
 	"atlanta" : "ATL",
@@ -117,9 +117,9 @@ var standardize = {
 	"blazers" : "POR",
 	"portland" : "POR",
 	"por" : "POR",
-	"sacremento kings" : "SAC",
+	"sacramento kings" : "SAC",
 	"kings" : "SAC",
-	"sacremento" : "SAC",
+	"sacramento" : "SAC",
 	"sac" : "SAC",
 	"san antonio spurs" : "SAS",
 	"spurs" : "SAS",

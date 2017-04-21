@@ -6,6 +6,7 @@ a,b,c
 const csvFileName='src/csvs/2015.csv'
 var Converter = require("csvtojson").Converter;
 var fs=require("fs"); 
+var standardizer = require("./Standardize.js");
 
 var csvConverter=new Converter({});
 
@@ -20,17 +21,22 @@ exports.convert = function(callback) {
 	stream.on('finish', function(){
 		var response = stream.finalResult;
 		var converted = response.map(function(team) {
-			team1 = team['home'] > team['road'] ? team['home'] : team['road'];
-			team2 = team['home'] < team['road'] ? team['home'] : team['road'];
-			score1 = team['home'] > team['road'] ? team['hscore'] : team['rscore'];
-			score2 = team['home'] < team['road'] ? team['hscore'] : team['rscore'];
+			home = standardizer.standardize[team['home'].toLowerCase()];
+			road = standardizer.standardize[team['road'].toLowerCase()];
+			if(!(home && road))return null;
+			team1 = home < road ? home : road;
+			team2 = home > road ? home : road;
+			score1 = home < road ? team['hscore'] : team['rscore'];
+			score2 = home > road ? team['hscore'] : team['rscore'];
 			return {team1: team1, team2: team2, outcome: (parseFloat(score1) - parseFloat(score2) > 0) ? 1 : -1 };
+		}).filter((team) => {
+			return team != null;
 		});
 		callback(converted);
 	});
 }
 
-exports.convert(function(response) {
-	console.log(response);
-});
+// exports.convert(function(response) {
+// 	console.log(response);
+// });
 
