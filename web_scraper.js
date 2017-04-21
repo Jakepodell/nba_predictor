@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
 var fs = require('fs');
+var standardizer = require("./Standardize.js");
 
 var year = process.argv[2];
 
@@ -67,7 +68,7 @@ function scrape(){
                             stat_array.push(parseFloat(team[stat]));
                         }
                     }
-                    return {team_name: team["team_name"], stats: stat_array};
+                    return {team_name: standardizer.standardize[team["team_name"].toLowerCase()], stats: stat_array};
                 })
             })
             
