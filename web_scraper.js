@@ -70,10 +70,6 @@ exports.scrape = function(year){
                 })
             })
             
-            .then(function (res) {
-                return res;
-            })
-            
             .catch(function(err) {
                 console.log(err);
             });

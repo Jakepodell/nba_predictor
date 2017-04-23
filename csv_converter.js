@@ -1,12 +1,8 @@
-/** csv file
-a,b,c
-1,2,3
-4,5,6
-*/
 const csvFileName='src/csvs/2015.csv'
 var Converter = require("csvtojson").Converter;
 var fs=require("fs"); 
 var standardizer = require("./Standardize.js");
+var Promise = require('promise');
 
 var csvConverter=new Converter({});
 
@@ -15,8 +11,7 @@ csvConverter.on("end_parsed",function(jsonObj){
     return (jsonObj); //here is your result json object
 });
 
-
-exports.convert = function(callback) {
+exports.convert = new Promise((resolve, reject) => {
 	var stream = fs.createReadStream(csvFileName).pipe(csvConverter);
 	stream.on('finish', function(){
 		var response = stream.finalResult;
@@ -32,11 +27,10 @@ exports.convert = function(callback) {
 		}).filter((team) => {
 			return team != null;
 		});
-		callback(converted);
+		resolve(converted);
 	});
-}
+});
 
-// exports.convert(function(response) {
-// 	console.log(response);
-// });
-
+ // exports.convert.then((data) => {
+ // 	console.log(data);
+ // });
