@@ -75,7 +75,7 @@ exports.standardize = {
 	"bucks" : "MIL",
 	"milwaukee" : "MIL",
 	"mil" : "MIL",
-	"minnesota timerwolves" : "MIN",
+	"minnesota timberwolves" : "MIN",
 	"timerwolves" : "MIN",
 	"minnesota" : "MIN",
 	"min" : "MIN",

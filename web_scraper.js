@@ -4,8 +4,6 @@ var request = require('request-promise');
 var fs = require('fs');
 var standardizer = require("./Standardize.js");
 
-var year = process.argv[2];
-
 const NBA_API = "http://www.basketball-reference.com/leagues/";
 
 const field_decoder = {
@@ -33,7 +31,7 @@ const field_decoder = {
                         "pts": "points"
                     };
 
-function scrape(){
+exports.scrape = function(year){
     return request(NBA_API + "NBA_" + year + ".html", {json: true})
             .then(function(res) {
                 var top_section = res.split(/team-stats-per_game/)[4].split(/all_opponent-stats-per_game/)[0];
@@ -81,10 +79,10 @@ function scrape(){
             });
 }
 
-scrape().then(function(val){
-    console.log(val);
-})
-.catch(function(err) {
-    console.log("err");
-})
+// exports.scrape(process.argv[2]).then(function(val){
+//     console.log(val);
+// })
+// .catch(function(err) {
+//     console.log("err");
+// })
 
