@@ -14,7 +14,7 @@ exports.generate_matchups = function(year) {
 	    		var stats2 = team2['stats'];
 	    		var stat_diffs = [];
 	    		for(var k = 0; k < stats1.length; k++) {
-	    			stat_diffs.push((stats1[k] - stats2[k]).toFixed(2));
+	    			stat_diffs.push((stats1[k] - stats2[k]).toFixed(2)/1.0);
 	    		}
 	    		// console.log("team1: " + team_name1 + ", team2: " + team_name2 + ", stat_diffs: " + stat_diffs);
 	    		matchups.push({abv1: team_name1, abv2: team_name2, stat_diffs: stat_diffs});
@@ -23,7 +23,7 @@ exports.generate_matchups = function(year) {
 	    return matchups;
 	})    
   .catch(function(err) {
-  	console.log(err);
+  //	console.log(err);
   });
 }
 

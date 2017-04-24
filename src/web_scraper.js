@@ -7,35 +7,36 @@ var standardizer = require("./Standardize.js");
 const NBA_API = "http://www.basketball-reference.com/leagues/";
 
 const field_decoder = {
-                        "team_name": "team_name",
-                        "fg":"field_goals",
-                        "fga": "field_goal_attempts",
-                        "fg_pct": "field_goal_percent",
-                        "fg3": "field_goal_3pt",
-                        "fg3a": "field_goal_3pt_attempts",
-                        "fg3_pct": "field_goal_3pt_percent",
-                        "fg2": "field_goal_2pt",
-                        "fg2a": "field_goal_2pt_attempts",
-                        "fg2_pct": "field_goal_2pt_percent",
-                        "ft": "free_throws",
-                        "fta": "free_throw_attempts",
-                        "ft_pct":"free_throw_percent",
-                        "orb": "offensive_rebounds",
-                        "drb": "defensive_rebounds",
-                        "trb": "total_rebounds",
-                        "ast": "asists",
-                        "stl": "steals",
-                        "blk": "blocks",
-                        "tov": "turnovers",
-                        "pf": "personal_fouls",
-                        "pts": "points"
-                    };
+    "team_name": "team_name",
+    "fg":"field_goals",
+    "fga": "field_goal_attempts",
+    "fg_pct": "field_goal_percent",
+    "fg3": "field_goal_3pt",
+    "fg3a": "field_goal_3pt_attempts",
+    "fg3_pct": "field_goal_3pt_percent",
+    "fg2": "field_goal_2pt",
+    "fg2a": "field_goal_2pt_attempts",
+    "fg2_pct": "field_goal_2pt_percent",
+    "ft": "free_throws",
+    "fta": "free_throw_attempts",
+    "ft_pct":"free_throw_percent",
+    "orb": "offensive_rebounds",
+    "drb": "defensive_rebounds",
+    "trb": "total_rebounds",
+    "ast": "asists",
+    "stl": "steals",
+    "blk": "blocks",
+    "tov": "turnovers",
+    "pf": "personal_fouls",
+    "pts": "points"
+};
 
 exports.scrape = function(year){
-    return request(NBA_API + "NBA_" + year + ".html", {json: true})
+        return request(NBA_API + "NBA_" + year + ".html", {json: true, timeout: 20000})
             .then(function(res) {
                 var top_section = res.split(/team-stats-per_game/)[4].split(/all_opponent-stats-per_game/)[0];
                 var data = top_section.match(/(data-stat="(fg|fga|fg_pct|fg3|fg3a|fg3_pct|fg2|fg2a|fg2_pct|ft|fta|ft_pct|orb|drb|trb|ast|stl|blk|tov|pf|pts)*"\s>[0-9]*.?[0-9]*<\/td>)|data-stat="team_name"\s><a\shref="\/teams\/(\w)*\/[0-9]*.html">(\w|\s)*/g);
+                //var data = top_section.match(/(data-stat="(fg_pct|ft_pct|tov)*"\s>[0-9]*.?[0-9]*<\/td>)|data-stat="team_name"\s><a\shref="\/teams\/(\w)*\/[0-9]*.html">(\w|\s)*/g);
                 var i = -1;
                 var json_strings = [];
                 var return_data = [];
@@ -69,16 +70,15 @@ exports.scrape = function(year){
                     return {team_name: standardizer.standardize[team["team_name"].toLowerCase()], stats: stat_array};
                 })
             })
-            
+
             .catch(function(err) {
                 console.log(err);
             });
-}
+    }
 
-// exports.scrape(process.argv[2]).then(function(val){
-//     console.log(val);
-// })
-// .catch(function(err) {
-//     console.log("err");
-// })
+    exports.scrape(2014).then(function(val){
+       // console.log(val);
+    }).catch(function(err) {
+      //  console.log("err");
+    })
 

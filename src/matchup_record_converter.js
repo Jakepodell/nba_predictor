@@ -1,10 +1,10 @@
 var csv_converter = require("./csv_converter.js");
 var promise = require('promise');
 
-exports.convert = function(){
-	return csv_converter.convert.then((response) => {
+exports.convert = function(year){
+	return csv_converter.convert(year).then((response) => {
 		var records = [];
-		response.forEach(function(m) {
+        response.forEach(function(m) {
 			if(!records[m.team1]) {
 				records[m.team1] = {};
 			}
@@ -33,7 +33,10 @@ exports.convert = function(){
 		}
 
 		return records;
+	}) .catch(function(err) {
+		console.log("err");
 	});
+
 }
 
 // exports.convert().then((data) => {
