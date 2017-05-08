@@ -1,0 +1,46 @@
+html {
+	height: 100%;
+	color: white;
+	font-family: "helvetica", helvetica,sans-serif;
+}
+
+body {
+	background: #757f9a; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#757f9a, #d7dde8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#757f9a, #d7dde8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#757f9a, #d7dde8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#757f9a, #d7dde8); /* Standard syntax */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+#title {
+	text-align: center;
+	/*border-bottom: 1px solid #d3d3d3;*/
+	height: 200px;
+	line-height: 250px;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+form {
+	padding: 50px;
+	text-align: center;
+	font-size: 16px;
+}
+
+#prediction {
+	padding: 50px;
+	text-align: center;
+	font-size: 20px;
+	min-height: 30px;
+}
+
+#footer {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	font-size: 12px;
+	padding: 10px;
+}
