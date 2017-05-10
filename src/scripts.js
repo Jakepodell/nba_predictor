@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Populate selct object [select] with option values from array [options]
 function populateDropdown(select, options) {
 	for (var i = 0; i < options.length; i++) {
