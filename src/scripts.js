@@ -1,3 +1,10 @@
+$.get(
+    "/teams",
+    {},
+    function(data) {
+        alert('page content: ' + data);
+    }
+);
 function train() {
 	var season = document.getElementById("train_season").value;
 	document.getElementById("forecast").disabled = false;
@@ -12,3 +19,4 @@ function readInput(){
  	var div = document.getElementById('prediction');
 	div.innerHTML = 'Predicted winer: ' + winner; 
 }
+
