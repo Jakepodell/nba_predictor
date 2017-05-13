@@ -9,16 +9,25 @@ function populateDropdown(select, options) {
 	}
 }
 
+// Populate dropdowns with data on window load
 $.get(
 	"/teams",
+	{},
+	function(data){
+		populateDropdown(document.getElementById("team1"), data);
+		populateDropdown(document.getElementById("team2"), data);
+	}
+);
+$.get(
+	"/seasons",
 	{},
 	function(data){
 		populateDropdown(document.getElementById("train_season"), data);
 		populateDropdown(document.getElementById("predict_season"), data);
 	}
 );
-// Populate dropdowns with data on window load
-window.onload = function (){
+
+/*window.onload = function (){
 
 	var options = Seasons.seasons;
 	var teams = Teams.teams;
@@ -27,7 +36,7 @@ window.onload = function (){
 	populateDropdown(document.getElementById("predict_season"), options);
 	populateDropdown(document.getElementById("team1"), teams);
 	populateDropdown(document.getElementById("team2"), teams);
-};
+};*/
 
 function train() {
 	var season = document.getElementById("train_season").value;
