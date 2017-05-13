@@ -20,7 +20,7 @@
 	<div id = "weight_table">
 		<h3>Computed Weights</h3>
 	</div>
-	
+
 	<div id = 'form_content'>
 	<form>
 		Train with Season:
@@ -99,6 +99,11 @@
 			<option value="Washington Wizards">Washington Wizards</option>-->
 		</select><br><br>
 		<button type="button" id = "forecast" onclick="readInput()" disabled>Forecast</button>
+		<br><br>
+		Evaluate with Season:
+		<select id="eval_season">
+		</select><br><br>
+		<button type="button" id = "evaluate" onclick="evalSeason()" disabled>Evaluate</button><br><br>
 	</form>
 
 	<div id='prediction_loader'></div>
