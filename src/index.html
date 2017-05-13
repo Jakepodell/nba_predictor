@@ -21,13 +21,15 @@
 		Train with Season:
 		<select id="train_season">
 		</select><br><br>
-		<button type="button" onclick="train()">Train</button><br><br><br>
+		<button type="button" onclick="train()">Train</button><br><br>
+		<div id = "weights"></div>
+		<br><br>
 		Predict with Season:
 		<select id="predict_season">
 		</select><br><br>
 		Team 1:
 		<select id="team1">
-			<option value="Atlanta Hawks">Atlanta Hawks</option>
+			<!--<option value="Atlanta Hawks">Atlanta Hawks</option>
 			<option value="Boston Celtics">Boston Celtics</option>
 			<option value="Brooklyn Nets">Brooklyn Nets</option>
 			<option value="Charlotte Hornets">Charlotte Hornets</option>
@@ -56,11 +58,11 @@
 			<option value="San Antonio Spurs">San Antonio Spurs</option>
 			<option value="Toronto Raptors">Toronto Raptors</option>
 			<option value="Utah Jazz">Utah Jazz</option>
-			<option value="Washington Wizards">Washington Wizards</option>
+			<option value="Washington Wizards">Washington Wizards</option>-->
 		</select>
 		Team 2:
 		<select id="team2">
-			<option value="Atlanta Hawks">Atlanta Hawks</option>
+			<!--<option value="Atlanta Hawks">Atlanta Hawks</option>
 			<option value="Boston Celtics">Boston Celtics</option>
 			<option value="Brooklyn Nets">Brooklyn Nets</option>
 			<option value="Charlotte Hornets">Charlotte Hornets</option>
@@ -89,11 +91,12 @@
 			<option value="San Antonio Spurs">San Antonio Spurs</option>
 			<option value="Toronto Raptors">Toronto Raptors</option>
 			<option value="Utah Jazz">Utah Jazz</option>
-			<option value="Washington Wizards">Washington Wizards</option>
+			<option value="Washington Wizards">Washington Wizards</option>-->
 		</select><br><br>
 		<button type="button" id = "forecast" onclick="readInput()" disabled>Forecast</button>
 	</form>
 
+	<div id='prediction_loader'></div>
 	<div id="prediction"></div>
 
 	<div id = "footer">
