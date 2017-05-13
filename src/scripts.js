@@ -38,6 +38,11 @@ $.get(
 	populateDropdown(document.getElementById("team2"), teams);
 };*/
 
+function forEachHelper(item) {
+	var div = document.getElementById('weight_table');
+	div.innerHTML += item + '<br>';
+}
+
 function train() {
 	var season = document.getElementById("train_season").value;
 	var div = document.getElementById('weights');
@@ -47,10 +52,15 @@ function train() {
 		"/train",
 		{season},
 		function(data){
-			if (data == 'success') {
-				div.className = '';
-				div.innerHTML = 'Computed weights: ' + data;
+			if (!data.error) {
+				div.className = '';	
+				var weight_table = document.getElementById('weight_table');
+				weight_table.innerHTML = '<h3>Computed Weights</h3>';
+				data.weights.forEach(forEachHelper);
 				document.getElementById("forecast").disabled = false;
+			} else {
+				div.className = '';
+				div.innerHTML = 'Error occurred. Please try retraining';
 			}
 		}
 	);
@@ -67,10 +77,11 @@ function readInput(){
  		"/predict",
  		{season,team1,team2},
  		function(winner) {
+ 			console.log(winner);
  			// display prediction
  			spinner.className ='';
  			var div = document.getElementById('prediction');
-			div.innerHTML = 'Predicted winer: ' + winner; 
+			div.innerHTML = 'Predicted winer: ' + winner.correct_winner + "<br>" + winner.message; 
  		}
  	);
  	//var winner = team1;
