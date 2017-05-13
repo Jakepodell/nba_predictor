@@ -3,14 +3,16 @@ var fs=require("fs");
 var standardizer = require("./Standardize.js");
 var Promise = require('promise');
 
-var csvConverter=new Converter({});
 
-//end_parsed will be emitted once parsing finished
-csvConverter.on("end_parsed",function(jsonObj){
-    return (jsonObj); //here is your result json object
-});
 
 exports.convert = function(year) {
+    var csvConverter = new Converter({});
+
+//end_parsed will be emitted once parsing finished
+    csvConverter.on("end_parsed",function(jsonObj){
+        return (jsonObj); //here is your result json object
+    });
+
     return new Promise((resolve, reject) => {
         var stream = fs.createReadStream("../src/csvs/"+year+".csv").pipe(csvConverter);
         stream.on('finish', function() {

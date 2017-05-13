@@ -31,15 +31,15 @@ const field_decoder = {
     "pts": "points"
 };
 
+exports.fields = field_decoder;
+
 exports.scrape = function(year){
         return request(NBA_API + "NBA_" + year + ".html", {json: true, timeout: 20000})
             .then(function(res) {
                 var top_section = res.split(/team-stats-per_game/)[4].split(/all_opponent-stats-per_game/)[0];
                 var data = top_section.match(/(data-stat="(fg|fga|fg_pct|fg3|fg3a|fg3_pct|fg2|fg2a|fg2_pct|ft|fta|ft_pct|orb|drb|trb|ast|stl|blk|tov|pf|pts)*"\s>[0-9]*.?[0-9]*<\/td>)|data-stat="team_name"\s><a\shref="\/teams\/(\w)*\/[0-9]*.html">(\w|\s)*/g);
-                //var data = top_section.match(/(data-stat="(fg_pct|ft_pct|tov)*"\s>[0-9]*.?[0-9]*<\/td>)|data-stat="team_name"\s><a\shref="\/teams\/(\w)*\/[0-9]*.html">(\w|\s)*/g);
                 var i = -1;
                 var json_strings = [];
-                var return_data = [];
                 data.forEach(function(point) {
                     var stat_split = point.split(/data-stat="/);
                     var stat = stat_split[1].split(/"/)[0];

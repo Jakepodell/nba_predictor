@@ -31,7 +31,6 @@ exports.convert = function(year){
 				}
 			}
 		}
-
 		return records;
 	}) .catch(function(err) {
 		console.log("err");

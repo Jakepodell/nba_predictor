@@ -3,6 +3,8 @@ var app = express();
 var path = require("path");;
 var Constants = require("./Constants.js");
 var NeuralNet = require("./NeuralNet.js");
+var mrc = require("./matchup_record_converter.js");
+var standardizer = require("./Standardize.js");
 
 app.use("/style.css", express.static(__dirname + '/style.css'));
 app.use("/scripts.js", express.static(__dirname + '/scripts.js'));
@@ -27,14 +29,44 @@ app.get('/seasons', function(req, res) {
 });
 
 app.post('/train', function(req, res) {
-  //  console.log(req);
     var season = req.body.season;
-    console.log(req.body);
-
     NeuralNet.train(season).then(data => {
         res.send(data);
     })
 });
+
+app.post('/predict', function(req, res) {
+    console.log("predicting");
+    var team1 = standardizer.standardize[req.body.team1.toLowerCase()];
+    var team2 = standardizer.standardize[req.body.team2.toLowerCase()];
+    var season = req.body.season;
+    NeuralNet.predict(season, team1, team2).then(prediction => {
+        return mrc.convert(season).then(data => {
+            var correct_winner = data[team1][team2] ? team1 : team2;
+            return ({
+                correct_winner: correct_winner,
+                predicted_winner: prediction.result,
+                message: "the perceptron prediction was " + (correct_winner === prediction.result ? "accurate" : "inaccurate")
+            });
+        })
+    }).then(data => {
+        res.send(data);
+    });
+});
+
+// app.post('/check', function(req, res) {
+//     console.log("checking");
+//     var team1 = standardizer.standardize[req.body.team1.toLowerCase()];
+//     var team2 = standardizer.standardize[req.body.team2.toLowerCase()];
+//     var prediction = standardizer.standardize[req.body.prediction.toLowerCase()];
+//     var season = req.body.season;
+//     mrc.convert(season).then(data => {
+//         var correct_winner = data[team1][team2] ? team1 : team2;
+//         res.json({correct_winner: correct_winner,
+//             predicted_winner: prediction,
+//             message: "the perceptron prediction was " + (correct_winner === prediction.result ? "accurate" : "inaccurate")});
+//     });
+// });
 
 app.listen(3030, () => {
     console.log("listening on port 3030");
