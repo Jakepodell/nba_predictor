@@ -21,7 +21,9 @@
 		Train with Season:
 		<select id="train_season">
 		</select><br><br>
-		<button type="button" onclick="train()">Train</button><br><br><br>
+		<button type="button" onclick="train()">Train</button><br><br>
+		<div id = "weights"></div>
+		<br><br>
 		Predict with Season:
 		<select id="predict_season">
 		</select><br><br>
@@ -94,6 +96,7 @@
 		<button type="button" id = "forecast" onclick="readInput()" disabled>Forecast</button>
 	</form>
 
+	<div id='prediction_loader'></div>
 	<div id="prediction"></div>
 
 	<div id = "footer">
