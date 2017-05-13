@@ -54,6 +54,12 @@ app.post('/predict', function(req, res) {
     });
 });
 
+app.post('/evaluate', (req, res) => {
+   NeuralNet.evaluate(req.body.season).then(results => {
+       res.send(results);
+   }) ;
+});
+
 // app.post('/check', function(req, res) {
 //     console.log("checking");
 //     var team1 = standardizer.standardize[req.body.team1.toLowerCase()];

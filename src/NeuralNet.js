@@ -27,7 +27,7 @@ exports.train = function(season) {
 
 exports.predict = function(season, team1, team2) {
     return web_scraper.scrape(season).then(function(val) {
-        // if(!p.weights.length) throw new Error("the perceptron has not been trained yet, silly!", 5);
+        if(!p.weights.length) throw new Error("the perceptron has not been trained yet, silly!", 5);
         var team1stats, team2stats, stat_diffs;
         for (var i = 0; i < val.length; i++) {
             if (!val[i]['team_name'])continue;
@@ -49,4 +49,21 @@ exports.predict = function(season, team1, team2) {
         return {message: "there was an error when attempting to make a prediction",
                 error: err.message};
     })
+}
+
+exports.evaluate = function(season) {
+    "use strict";
+    return rsc.combine(season).then((data) => {
+        var correct = 0;
+        var incorrect = 0;
+        data.forEach((datum) => {
+            var outcome = datum.outcome;
+            var prediction = p.perceive(datum.stat_diffs);
+            if(outcome == prediction) correct++;
+            else incorrect ++;
+        });
+        // console.log("predicted " + correct + " accurately, and " + incorrect + " inaccurately.");
+        return {message: "evaluated the perceptrons ability to correctly predict outcomes from the " + season + " season.",
+                percent_correct: correct/(correct + incorrect)};
+    });
 }
