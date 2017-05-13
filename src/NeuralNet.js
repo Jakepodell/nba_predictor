@@ -42,6 +42,7 @@ exports.predict = function(season, team1, team2) {
         }
         return {
             message: "successfully predicted the winner",
+            winner_index: p.perceive(stat_diffs),
             result: p.perceive(stat_diffs) ? team1 : team2
         }
     }).catch(err => {

@@ -42,11 +42,12 @@ app.post('/predict', function(req, res) {
     var season = req.body.season;
     NeuralNet.predict(season, team1, team2).then(prediction => {
         return mrc.convert(season).then(data => {
-            var correct_winner = data[team1][team2] ? team1 : team2;
+            var correct_winner = data[team1][team2] ? req.body.team1 : req.body.team2;
+            var predicted_winner = prediction.winner_index ? req.body.team1 : req.body.team2;
             return ({
                 correct_winner: correct_winner,
-                predicted_winner: prediction.result,
-                message: "the perceptron prediction was " + (correct_winner === prediction.result ? "accurate" : "inaccurate")
+                predicted_winner: predicted_winner,
+                message: "the perceptron prediction was " + (correct_winner === predicted_winner ? "accurate" : "inaccurate")
             });
         })
     }).then(data => {
