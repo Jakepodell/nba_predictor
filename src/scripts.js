@@ -28,17 +28,6 @@ $.get(
 	}
 );
 
-/*window.onload = function (){
-
-	var options = Seasons.seasons;
-	var teams = Teams.teams;
-	console.log(options);
-	populateDropdown(document.getElementById("train_season"), options);
-	populateDropdown(document.getElementById("predict_season"), options);
-	populateDropdown(document.getElementById("team1"), teams);
-	populateDropdown(document.getElementById("team2"), teams);
-};*/
-
 function forEachHelper(item) {
 	var div = document.getElementById('weight_table');
 	div.innerHTML += item + '<br>';
@@ -106,10 +95,8 @@ function readInput(){
  				// display prediction
  				console.log(winner);
  				spinner.className ='';
- 				//var div = document.getElementById('prediction');
 				div.innerHTML = 'Predicted winner: ' + winner.predicted_winner + "<br>" + 'Correct winner: ' + winner.correct_winner; 
  			}
  		);
  	}
 }
-
